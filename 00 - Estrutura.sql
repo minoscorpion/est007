@@ -21,34 +21,28 @@ CREATE TABLE dbo.Produtos (
 );
 GO
 
-
-CREATE TABLE dbo.Pessoas (
+CREATE TABLE dbo.Pessoa (
     PessoaID INT PRIMARY KEY DEFAULT NEXT VALUE FOR Seq_PessoaID,
-    Nome NVARCHAR(100) NOT NULL,
-    Endereco NVARCHAR(200) NOT NULL,
-    Telefone NVARCHAR(20),
-    Email NVARCHAR(100)
+    Nome NVARCHAR(100) NULL,
+    logradouro NVARCHAR(200) NULL,
+	cidade NVARCHAR(200) NULL,
+	estado NVARCHAR(200) NULL,
+    Telefone NVARCHAR(20) null,
+	email NVARCHAR(20) null
 );
 GO
 
-drop table Pessoasjuridicas
-
-
 CREATE TABLE dbo.PessoasFisicas (
     PessoaID INT PRIMARY KEY,
-	Nome NVARCHAR(100) NOT NULL,
-    Endereco NVARCHAR(200) NOT NULL,
-    Telefone NVARCHAR(20),
-    Email NVARCHAR(100),
     CPF CHAR(11) NOT NULL UNIQUE,
-    CONSTRAINT FK_PessoaFisica_Pessoa FOREIGN KEY (PessoaID) REFERENCES Pessoas(PessoaID)
+    CONSTRAINT FK_PessoaFisica_Pessoa FOREIGN KEY (PessoaID) REFERENCES Pessoa(PessoaID)
 );
 GO
 
 CREATE TABLE dbo.PessoasJuridicas (
     PessoaID INT PRIMARY KEY,
     CNPJ CHAR(14) NOT NULL UNIQUE,
-    CONSTRAINT FK_PessoaJuridica_Pessoa FOREIGN KEY (PessoaID) REFERENCES Pessoas(PessoaID)
+    CONSTRAINT FK_PessoaJuridica_Pessoa FOREIGN KEY (PessoaID) REFERENCES Pessoa(PessoaID)
 );
 GO
 
