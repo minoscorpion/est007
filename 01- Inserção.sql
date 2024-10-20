@@ -18,23 +18,28 @@ VALUES
 DECLARE @PessoaID INT;
 SET @PessoaID = NEXT VALUE FOR Seq_PessoaID;
 
-INSERT INTO PessoasFisicas (PessoaID, Nome, logradouro, cidade, estado, Telefone, Email, cpf) 
-VALUES (@PessoaID, 'jOAO', 'RUA 12, CASA 3, QUITANDA', 'RIACHO DO NORTE', 'PA', '1111-1111','JOAO@RIACHO.com.br','11111111111');
+INSERT INTO Pessoa(PessoaID, Nome, logradouro, cidade, estado, Telefone, Email) 
+VALUES (@PessoaID, 'jOAO', 'RUA 12, CASA 3, QUITANDA', 'RIACHO DO NORTE', 'PA', '1111-1111','JOAO@RIACHO.com.br');
+
+INSERT INTO PessoasFisicas  (PessoaID, cpf) 
+VALUES (@PessoaID, '11111111111');
 
 /*************************************************************** PESSOA JURIDICA *******************************/
 DECLARE @PessoaID INT;
 SET @PessoaID = NEXT VALUE FOR Seq_PessoaID;
 
-INSERT INTO PessoasJuridicas (PessoaID, Nome, logradouro, cidade, estado, Telefone, Email, cnpj) 
-VALUES (@PessoaID, 'JJC', 'RUA 11, CENTRO', 'RIACHO DO NORTE', 'PA', '1212-1212','Empresa@xyz.com.br','22222222222222');
+INSERT INTO Pessoa (PessoaID, Nome, logradouro, cidade, estado, Telefone, Email) 
+VALUES (@PessoaID, 'JJC', 'RUA 11, CENTRO', 'RIACHO DO NORTE', 'PA', '1212-1212','Empresa@xyz.com.br');
 
+INSERT INTO PessoasJuridicas (PessoaID, cnpj) 
+VALUES (@PessoaID, '22222222222222');
 /*************************************************************** GERANDO ALGUNS MOTIVMENTOS *******************************/
 INSERT INTO Movimentos (UsuarioID, PessoaID, ProdutoID, Quantidade, Tipo, PrecoUnitario, DataMovimento)
 VALUES 
-(1, 8, 1, 20, 'S', 4.00, getdate()), 
-(1, 8, 3, 15, 'S', 2.00, getdate()),  
-(2, 8, 3, 10, 'S', 3.00, getdate()),  
-(1, 9, 3, 15, 'E', 5.00, getdate()),  
-(1, 9, 3, 20, 'E', 4.00, getdate())
+(1, 1, 1, 20, 'S', 4.00, getdate()), 
+(1, 1, 3, 15, 'S', 2.00, getdate()),  
+(2, 1, 3, 10, 'S', 3.00, getdate()),  
+(1, 2, 3, 15, 'E', 5.00, getdate()),  
+(1, 2, 3, 20, 'E', 4.00, getdate())
 
 
